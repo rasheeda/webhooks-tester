@@ -36,6 +36,17 @@ body {
     }
 }
 
+.wrapper {
+    max-width: 1024px;
+    margin: 0 auto 0 auto;
+    font: 1.2em Helvetica, arial, sans-serif;
+}
+
+.wrapper>* {
+    border-radius: 1px;
+    padding: 10px;
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -86,7 +97,7 @@ body {
 }
 
 .nav-new-webhook-button {
-    background-color: black;
+    background-color: seagreen;
     border-radius: 4px;
     box-shadow: 0 0 10px 0 black;
     color: #f2f2f2;

@@ -1,4 +1,4 @@
-button {
+.c_button {
     position: relative;
     background: none;
     color: aqua;
@@ -16,7 +16,7 @@ button {
     margin: 0 auto 0 auto;
 }
 
-button:hover {
+.c_button:hover {
     color: #ffffff !important;
     font-weight: 700 !important;
     letter-spacing: 5px;
@@ -27,13 +27,13 @@ button:hover {
     cursor: pointer;
 }
 
-button:active {
+.c_button:active {
     box-shadow: inset 0 0.6em 2em -0.3em rgba(0, 0, 0, 0.15),
         inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
 }
 
 @media all and (max-width: 30em) {
-    button {
+    .c_button {
         display: block;
         margin: 0.4em auto;
     }
@@ -78,9 +78,24 @@ button:active {
     justify-content: center;
     text-align: center;
     align-items: center;
+    margin: 0 auto 0 auto;
+    width: 1024px;
 }
 
-.webhooks {
+.webhooks-nav {
+    grid-area: nav;
+    min-width: 120px;
+    align-content: center;
+    height: 100%;
+    overflow-y: auto;
+    position: fixed;
+    margin-top: 10px;
+}
+
+.webhooks-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .webhooks-nav a {
@@ -92,33 +107,22 @@ button:active {
     padding: 10px;
 }
 
-.wrapper {
-    max-width: 1024px;
-    margin: 0 auto 0 auto;
-    font: 1.2em Helvetica, arial, sans-serif;
-}
-
-.wrapper > * {
-    border-radius: 1px;
-    padding: 10px;
-}
-
-.webhooks-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
 .webhooks_content {
     grid-area: content;
-    /* border: 1px solid; */
     width: 850px;
+    margin-left: 150px;
 }
 
-.webhooks-nav {
-    grid-area: nav;
-    min-width: 120px;
-    align-content: center;
+li:active {
+    background-color: grey;
+}
+
+li:focus {
+    background-color: goldenrod;
+}
+
+li:target {
+    background-color: blueviolet;
 }
 
 .wrapper {
@@ -159,44 +163,4 @@ button:active {
     .webhooks-nav ul {
         flex-direction: column;
     }
-}
-
-.webhook-item-date {
-    font-size: small;
-    font-weight: bold;
-}
-
-.webhook-item-http-version {
-    font-size: x-small;
-    color: aqua;
-}
-
-.webhook-item-method {
-    font-size: small;
-    background: grey;
-    padding: 3px;
-}
-
-.webhook-item-method-post {
-    font-size: small;
-    background: cadetblue;
-    padding: 3px;
-}
-
-.webhook-item-method-get {
-    font-size: small;
-    background: green;
-    padding: 3px;
-}
-
-.webhook-item-method-put {
-    font-size: small;
-    background: violet;
-    padding: 3px;
-}
-
-.webhook-item-method-delete {
-    font-size: small;
-    background: red;
-    padding: 3px;
 }

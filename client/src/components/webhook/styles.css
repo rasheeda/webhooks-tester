@@ -1,0 +1,44 @@
+.webhook-item-date {
+    font-size: small;
+    font-weight: bold;
+}
+
+.webhook-item-http-version {
+    font-size: x-small;
+    color: aqua;
+}
+
+.webhook-item-method {
+    font-size: small;
+    background: grey;
+    padding: 3px;
+}
+
+.webhook-item-method-post {
+    font-size: small;
+    background: cadetblue;
+    padding: 3px;
+}
+
+.webhook-item-method-get {
+    font-size: small;
+    background: green;
+    padding: 3px;
+}
+
+.webhook-item-method-put {
+    font-size: small;
+    background: violet;
+    padding: 3px;
+}
+
+.webhook-item-method-delete {
+    font-size: small;
+    background: red;
+    padding: 3px;
+}
+
+.request-syntax {
+    font-size: 15px;
+    margin-top: -20px;
+}

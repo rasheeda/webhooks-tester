@@ -40,7 +40,6 @@ webhookDataModel.getDataByWebhook = function(webhook, result) {
                 console.log("error fetching webhookDataz: ", err);
                 result(null, err);
             } else {
-                console.log("successfully fetched all webhookDataz: ", res);
                 result(null, res);
             }
         }
