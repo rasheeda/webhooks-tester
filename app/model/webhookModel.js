@@ -24,7 +24,7 @@ webhook.getAll = function(result) {
             console.log("error fetching webhookz: ", err);
             result(null, err);
         } else {
-            console.log("successfully fetched all webhookz: ", res);
+            //console.log("successfully fetched all webhookz: ", res);
             result(null, res);
         }
     });

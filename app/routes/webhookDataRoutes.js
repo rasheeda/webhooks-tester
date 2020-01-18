@@ -5,7 +5,7 @@ module.exports = app => {
         return res.status(200).send({ 1: "data here!" });
     });
 
-    app.route("/api/webhooks/:webhook/data").get(webhookData.getDataByWebhook);
+    app.route("/a/webhooks/:webhook/data").get(webhookData.getDataByWebhook);
 
     app.route("/a/:webhook").all(webhookData.create);
 };
