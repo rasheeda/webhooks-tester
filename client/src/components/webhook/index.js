@@ -28,10 +28,19 @@ function Webhook() {
     useEffect(() => {
         JavascriptTimeAgo.locale(en);
 
-        socket.on("getWebhooksData", data => {
-            socket.emit("getWebhooksData", webhook);
-            setHooksData(data);
-        });
+        // socket.on("getWebhooksData", data => {
+        //     socket.emit("getWebhooksData", webhook);
+        //     console.log("data received! ", data);
+        //     setHooksData(data);
+        // });
+
+        getWebhooksData(webhook)
+            .json(response => {
+                setHooksData(response);
+            })
+            .catch(() => {
+                console.log("error getting all data");
+            });
     }, []);
 
     const select = id => {
