@@ -1,5 +1,4 @@
 const webhookDataModel = require("../model/webhookDataModel");
-const server = require("../../index");
 
 exports.create = function(req, res) {
     var newWebhookData = new webhookDataModel(req);
@@ -8,8 +7,6 @@ exports.create = function(req, res) {
         if (err) {
             res.status(400).send(err);
         } else {
-            socket = server.getIONamespaceSocket();
-            socket.emit("getWebhooksData", webhookData);
             res.status(201).send(webhookData);
         }
     });

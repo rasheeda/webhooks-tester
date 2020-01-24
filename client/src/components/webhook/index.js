@@ -9,7 +9,6 @@ import en from "javascript-time-ago/locale/en";
 import JavascriptTimeAgo from "javascript-time-ago";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import socketIOClient from "socket.io-client";
 
 function Webhook() {
     let { webhook } = useParams();
@@ -17,21 +16,21 @@ function Webhook() {
     const [hooksData, setHooksData] = useState({});
     const [selectedWebhookData, setSelectedWebhookData] = useState({});
 
-    const { endpoint } = {
-        response: hooksData,
-        endpoint: `http://localhost:5000/a/webhooks/data`
-    };
-
-    //connect to the socket
-    const socket = socketIOClient(endpoint);
-
     useEffect(() => {
         JavascriptTimeAgo.locale(en);
 
-        socket.on("getWebhooksData", data => {
-            socket.emit("getWebhooksData", webhook);
-            setHooksData(data);
-        });
+        getWebhooksData(webhook)
+            .json(response => {
+                setHooksData(response);
+
+                const selectedWebhookData = response.find(
+                    data => data.id === response[0].id
+                );
+                setSelectedWebhookData(selectedWebhookData);
+            })
+            .catch(error => {
+                console.log("error getting all data ", error);
+            });
     }, []);
 
     const select = id => {
@@ -64,7 +63,7 @@ function Webhook() {
                 <div className="request-syntax">
                     <SyntaxHighlighter language="javascript" style={dracula}>
                         curl -X POST -d 'Catch All Requests!'
-                        https://webhookstester.io/a/{webhook}
+                        https://webhookstester.dev/a/{webhook}
                     </SyntaxHighlighter>
                 </div>
                 {isEmpty(selectedWebhookData) ? (
