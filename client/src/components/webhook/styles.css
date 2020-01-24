@@ -42,3 +42,21 @@
     font-size: 15px;
     margin-top: -20px;
 }
+
+.counter {
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+    background-color: darkgray;
+    color: black;
+}
+
+.selected-index {
+    background-color: darkgray;
+    color: black;
+    font-size: 25px;
+    font-weight: bolder;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 5px;
+}

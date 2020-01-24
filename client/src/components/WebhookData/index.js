@@ -2,7 +2,7 @@ import React from "react";
 import ReactJson from "react-json-view";
 import "./styles.css";
 
-const WebhookData = ({ details }) => {
+const WebhookData = ({ details, selectedIndex }) => {
     return (
         <div>
             {details.id && (

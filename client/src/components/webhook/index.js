@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { useParams } from "react-router-dom";
 import { getWebhooksData } from "../../services/webhookz";
-import { Link } from "react-router-dom";
 import WebhookData from "../WebhookData";
 import ReactTimeAgo from "react-time-ago";
 import en from "javascript-time-ago/locale/en";
@@ -15,6 +14,7 @@ function Webhook() {
 
     const [hooksData, setHooksData] = useState({});
     const [selectedWebhookData, setSelectedWebhookData] = useState({});
+    const [selectedWebhookIndex, setSelectedWebhookIndex] = useState(1);
 
     useEffect(() => {
         JavascriptTimeAgo.locale(en);
@@ -33,9 +33,10 @@ function Webhook() {
             });
     }, []);
 
-    const select = id => {
+    const select = (id, index) => {
         const selectedWebhookData = hooksData.find(data => data.id === id);
         setSelectedWebhookData(selectedWebhookData);
+        setSelectedWebhookIndex(index);
     };
 
     const isEmpty = obj => {
@@ -50,16 +51,18 @@ function Webhook() {
             <div className="webhooks-nav">
                 <ul>
                     {hooksData.length > 0 &&
-                        hooksData.map(data => (
+                        hooksData.map((data, index) => (
                             <WebhookItemListView
                                 key={data.id}
                                 select={select}
                                 webhook={data}
+                                index={index + 1}
                             />
                         ))}
                 </ul>
             </div>
             <article className="webhooks_content">
+                <p className="selected-index">{selectedWebhookIndex}</p>
                 <div className="request-syntax">
                     <SyntaxHighlighter language="javascript" style={dracula}>
                         curl -X POST -d 'Catch All Requests!'
@@ -69,19 +72,24 @@ function Webhook() {
                 {isEmpty(selectedWebhookData) ? (
                     `No request data selected. Select one on the right or make a request to (https://webhookstester.io/a/${webhook})`
                 ) : (
-                    <WebhookData details={selectedWebhookData} />
+                    <WebhookData
+                        details={selectedWebhookData}
+                        selectedIndex={selectedWebhookIndex}
+                    />
                 )}
             </article>
         </div>
     );
 }
 
-const WebhookItemListView = ({ webhook, select }) => (
+const WebhookItemListView = ({ webhook, select, index }) => (
     <li
         key={webhook.id}
         style={{ cursor: "pointer" }}
-        onClick={() => select(webhook.id)}
+        onClick={() => select(webhook.id, index)}
     >
+        <span className="counter">{index}</span>
+        <br />
         <span
             className={`webhook-item-method webhook-item-method-${JSON.parse(
                 webhook.data
@@ -93,7 +101,7 @@ const WebhookItemListView = ({ webhook, select }) => (
         <span className="webhook-item-date">
             <ReactTimeAgo date={webhook.created_at} />
         </span>
-        <br></br>
+        <br />
         <span className="webhook-item-http-version">
             HTTP Version: {JSON.parse(webhook.data).httpVersion}
         </span>
