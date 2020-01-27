@@ -1,14 +1,12 @@
 import React from "react";
-import logo from "../../assets/images/logo.svg";
 import "./styles.css";
 import { create } from "../../services/webhookz";
-import { Redirect } from "react-router-dom";
+import { Alert } from "antd";
 
 function Home() {
     const createWebhook = () => {
         create()
             .json(response => {
-                console.log("webhook created", response);
                 if (response.id.name) {
                     console.log(
                         "webhook created successfully",
@@ -25,10 +23,16 @@ function Home() {
 
     return (
         <div className="home">
-            {/* <img src={logo} className="App-logo" alt="logo" /> */}
-            <p>Easily create a test webhook URL to catch all requests</p>
+            <p>
+                Webhooks tester is a free online tool for helping developers
+                test weebhooks and other types of HTTP requests.
+            </p>
+            <p>
+                To get started, click the button below to generate a URL to test
+                your webhook requests.{" "}
+            </p>
             <button className="c_button" onClick={createWebhook}>
-                Create Webhook
+                Create Webhook URL
             </button>
         </div>
     );

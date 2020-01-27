@@ -82,6 +82,8 @@
     width: 1024px;
 }
 
+.home p {}
+
 .webhooks-nav {
     grid-area: nav;
     min-width: 120px;

@@ -2,7 +2,8 @@ import React from "react";
 import ReactJson from "react-json-view";
 import "./styles.css";
 
-const WebhookData = ({ details, selectedIndex }) => {
+const WebhookData = ({ details, selectedWebhookIndex }) => {
+    const data = JSON.parse(details.data);
     return (
         <div>
             {details.id && (
@@ -10,8 +11,15 @@ const WebhookData = ({ details, selectedIndex }) => {
                     <table>
                         <tbody>
                             <tr>
-                                <td>{JSON.parse(details.data).method}</td>
-                                <td>{JSON.parse(details.data).url}</td>
+                                <td>
+                                    <p className="selected-index">
+                                        {selectedWebhookIndex}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{data.method}</td>
+                                <td>{data.url}</td>
                             </tr>
                             <tr>
                                 <td>Date</td>
@@ -19,28 +27,22 @@ const WebhookData = ({ details, selectedIndex }) => {
                             </tr>
                             <tr>
                                 <td>Host</td>
-                                <td>{JSON.parse(details.data).ip}</td>
+                                <td>{data.ip}</td>
                             </tr>
                         </tbody>
                     </table>
                     <h3 className="headers">Headers</h3>
                     <ReactJson
-                        src={JSON.parse(details.data).headers}
+                        src={data.headers}
                         theme="ashes"
                         iconStyle="circle"
                     />
 
                     <h3 className="query">Query</h3>
-                    <ReactJson
-                        src={JSON.parse(details.data).query}
-                        theme="google"
-                    />
+                    <ReactJson src={data.query} theme="google" />
 
                     <h3 className="request-body">Request Body</h3>
-                    <ReactJson
-                        src={JSON.parse(details.data).body}
-                        theme="greenscreen"
-                    />
+                    <ReactJson src={data.body} theme="greenscreen" />
                 </div>
             )}
         </div>

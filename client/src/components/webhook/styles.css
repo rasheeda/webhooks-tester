@@ -40,23 +40,27 @@
 
 .request-syntax {
     font-size: 15px;
-    margin-top: -20px;
 }
 
 .counter {
-    font-size: 15px;
+    font-size: 10px;
     font-weight: bold;
     display: inline-block;
     background-color: darkgray;
     color: black;
+    padding: 5px;
 }
 
-.selected-index {
-    background-color: darkgray;
-    color: black;
-    font-size: 25px;
+.selected {
+    background-color: #435055;
+}
+
+.request-total {
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.request-total span {
+    padding: 3px;
     font-weight: bolder;
-    margin-top: 10px;
-    display: inline-block;
-    padding: 5px;
 }

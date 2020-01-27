@@ -1,32 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "../home";
 import "./styles.css";
 import Webhook from "../webhook";
-import { Button, Radio, Icon } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 function Layout() {
+    const [isModalVisible, setModalVisibility] = useState(false);
+
+    const showModal = () => setModalVisibility(true);
+
+    const handleModalDismiss = () => {
+        console.log("handle close");
+        setModalVisibility(false);
+    };
+
     return (
         <Router>
             <div className="App">
                 <div className="container">
                     <div className="navbar">
                         <div className="navbar-content">
-                            <a>WebhooksTester</a>
-                            <a class="active" href="#">
+                            <a href="/">{process.env.REACT_APP_SITE_NAME}</a>
+                            <a className="active" href="#">
                                 Github
                             </a>
-                            <a class="active" href="#">
+
+                            <a className="active" href="#">
+                                About
+                            </a>
+
+                            <a className="active" href="#">
                                 Privacy Terms
                             </a>
-                            <div class="topnav-right">
+
+                            {/* <div class="topnav-right">
                                 <a href="#" className="nav-new-webhook-button">
                                     <FontAwesomeIcon icon={faPlusSquare} /> New
                                     Webhook
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="wrapper">
@@ -36,7 +48,11 @@ function Layout() {
                         </Switch>
                     </div>
                     <div className="footer">
-                        <a href="https://mandeeya.io">mandeeya.io</a>
+                        <a href="https://mandeeya.io">mandeeya.io </a> |{" "}
+                        {new Date().getFullYear()} |{" "}
+                        <a className="active" href="#">
+                            Privacy Terms
+                        </a>
                     </div>
                 </div>
             </div>
