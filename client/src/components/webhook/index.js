@@ -14,7 +14,7 @@ import { Typography } from "antd";
 function Webhook() {
     const { Paragraph, Text } = Typography;
     const { webhook } = useParams();
-    const webhookUrl = `https://webhookstester.dev/a/${webhook}`;
+    const webhookUrl = `${process.env.REACT_APP_BACKEND_URL}/a/${webhook}`;
 
     const [hooksData, setHooksData] = useState({});
     const [selectedWebhookData, setSelectedWebhookData] = useState({});
@@ -89,7 +89,7 @@ function Webhook() {
                     </Text>
                 </p> */}
                 {isEmpty(selectedWebhookData) ? (
-                    `No request data selected. You can now make any kind of request to https://webhookstester.dev/a/${webhook}`
+                    `No request data selected. You can now make any kind of request to ${webhookUrl}`
                 ) : (
                     <WebhookData
                         details={selectedWebhookData}

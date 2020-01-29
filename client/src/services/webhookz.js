@@ -1,6 +1,6 @@
 import wretch from "wretch";
 
-const API_URL = "http://localhost:5000/api/webhooks";
+const API_URL = `${process.env.REACT_APP_BACKEND_URL}/api/webhooks`;
 
 export const create = () => wretch(API_URL).post();
 
