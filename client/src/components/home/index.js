@@ -1,18 +1,12 @@
 import React from "react";
 import "./styles.css";
 import { create } from "../../services/webhookz";
-import { Alert } from "antd";
 
 function Home() {
     const createWebhook = () => {
         create()
             .json(response => {
                 if (response.id.name) {
-                    console.log(
-                        "webhook created successfully",
-                        `/${response.id.name}`
-                    );
-
                     window.location.replace(`/${response.id.name}`);
                 }
             })
@@ -22,20 +16,19 @@ function Home() {
     };
 
     return (
-        <div className="home">
-            <p>
+        <div className="col-md-12 home">
+            <h1 className="d-block mb-5">
                 Webhooks tester is a free online tool for helping developers
-                test weebhooks and other types of HTTP requests.
-            </p>
-            <p>
+                test/debug web hooks and other types of HTTP requests.
+            </h1>
+            <span className="d-block mb-5 caption">
                 To get started, click the button below to generate a URL to test
-                your webhook requests.{" "}
-            </p>
-            <button className="c_button" onClick={createWebhook}>
-                Create Webhook URL
+                your webhook requests.
+            </span>
+            <button onClick={createWebhook} className="btn-custom">
+                <span>Create New Webhook</span>
             </button>
         </div>
     );
 }
-
 export default Home;

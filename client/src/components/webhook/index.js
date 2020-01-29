@@ -51,8 +51,11 @@ function Webhook() {
     };
 
     return (
-        <div>
+        <div className="col-md-12">
             <div className="webhooks-nav">
+                <p className="request-total">
+                    <span>{hooksData.length}</span> Total Requests
+                </p>
                 <ul>
                     {hooksData.length > 0 &&
                         hooksData.map((data, index) => (
@@ -67,11 +70,9 @@ function Webhook() {
                 </ul>
             </div>
             <article className="webhooks_content">
-                <p className="request-total">
-                    <span>{hooksData.length}</span> Total Requests
-                </p>
                 <p className="request-syntax">
-                    Here's your unique webhook URL{" "}
+                    Here's your unique webhook URL. You can now make any kind of
+                    request.
                     <span>
                         <b>
                             <Paragraph copyable={{ text: webhookUrl }}>
@@ -110,14 +111,12 @@ const WebhookItemListView = ({ webhook, select, index, active }) => {
             onClick={() => select(webhook.id, index)}
             className={active ? "selected" : ""}
         >
-            <span className="counter">{index}</span>
-            <br />
+            <span className="counter">#{index}</span>{" "}
             <span
                 className={`webhook-item-method webhook-item-method-${data.method.toLowerCase()}`}
             >
                 {data.method}
-            </span>
-            <br />
+            </span>{" "}
             <span className="webhook-item-date">
                 <ReactTimeAgo date={webhook.created_at} />
             </span>

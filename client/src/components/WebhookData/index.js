@@ -8,15 +8,9 @@ const WebhookData = ({ details, selectedWebhookIndex }) => {
         <div>
             {details.id && (
                 <div className="webhook-data-content">
+                    <p className="selected-index">#{selectedWebhookIndex}</p>
                     <table>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <p className="selected-index">
-                                        {selectedWebhookIndex}
-                                    </p>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>{data.method}</td>
                                 <td>{data.url}</td>
